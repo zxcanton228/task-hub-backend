@@ -1,0 +1,23 @@
+model Task {
+  id      String    @id @default(cuid())
+  title   String
+  status  Int
+  dueDate DateTime? @map("due_date")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  icon  Icon?
+  color String? @default("#725cee")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("task")
+}
+
+enum Icon {
+  CHECKLIST
+  CALENDAR
+  PLANE
+}
