@@ -11,7 +11,7 @@ db-init:
 
 
 back:
-	docker-compose up backend database -d --build 
+	docker-compose up backend -d --build 
 front:
 	docker-compose up frontend nginx -d --build 
 

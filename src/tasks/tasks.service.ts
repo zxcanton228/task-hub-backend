@@ -48,6 +48,25 @@ export class TasksService {
 			})
 		}
 	}
+	public async getToday(): Promise<Task[]> {
+		const startOfToday = new Date()
+		startOfToday.setUTCHours(0, 0, 0, 0)
+
+		const endOfToday = new Date(startOfToday)
+		endOfToday.setUTCDate(endOfToday.getUTCDate() + 1)
+
+		const tasks = await this.prismaService.task.findMany({
+			take: 3,
+			where: {
+				dueDate: {
+					gte: startOfToday,
+					lt: endOfToday
+				}
+			}
+		})
+
+		return tasks
+	}
 
 	public async getOne(id: string): Promise<Task> {
 		const task = this.prismaService.task.findUnique({

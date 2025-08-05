@@ -34,7 +34,12 @@ export class TasksController {
 	@Get()
 	async getAll(@Query() query: GetAllTasksDto) {
 		const data = await this.tasksService.getAll(query)
-
+		return data
+	}
+	@Auth()
+	@Get('today')
+	async getToday() {
+		const data = await this.tasksService.getToday()
 		return data
 	}
 

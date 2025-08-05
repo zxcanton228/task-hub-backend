@@ -7,6 +7,7 @@
 		"email": "kirove.work@gmail.com",
 		"url": "https://github.com/zxcanton228"
 	},
+	"repository": {},
 	"private": true,
 	"engines": {
 		"bun": ">=1.2"
@@ -24,7 +25,7 @@
 		"seed:prod": "dotenv -e .env.production -- bun run -r ./tsconfig-paths-bootstrap.js ./dist/seeder/seeder",
 		"db:push": "dotenv -e .env.development -- bun prisma db push",
 		"db:migrate": "dotenv -e .env.development -- bun prisma migrate dev",
-		"db:reset": "dotenv -e .env.development -- bun prisma migrate reset"
+		"db:reset": "dotenv -e .env.development -- prisma db push --force-reset --accept-data-loss"
 	},
 	"dependencies": {
 		"@faker-js/faker": "^9.0.3",
